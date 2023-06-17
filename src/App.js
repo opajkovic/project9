@@ -6,10 +6,9 @@ import './App.css';
 function App() {
   const [movies, setMovies] = useState([]);
 
-function featchMoviesHandler() {
-  fetch('https://swapi.dev/api/films/')
-    .then((response) => {return response.json();})
-    .then((data) => { 
+async function featchMoviesHandler() {
+  const response = await fetch('https://swapi.dev/api/films/')
+    const data = await response.json();
       const transformedMovies = data.results.map(movieData => {
         return {
           id:movieData.episode_id,
@@ -18,7 +17,7 @@ function featchMoviesHandler() {
           releaseDate:movieData.release_date
         }
       })
-      setMovies(transformedMovies)})
+      setMovies(transformedMovies);
 }
 
   return (
